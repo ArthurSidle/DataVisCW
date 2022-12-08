@@ -2,8 +2,6 @@ import pandas as pd
 
 title_basics = pd.read_csv('DataVisDataFiles/title.basics.tsv.gz', sep='\t', index_col=0, compression='infer')
 
-
-
 title_basics.drop(title_basics[
     (title_basics.titleType == 'short') |
     (title_basics.titleType == 'tvEpisode') |

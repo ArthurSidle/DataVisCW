@@ -15,7 +15,7 @@ def load_imdb_data(req):
 def load_strmsrvc_data(srvc_name):
     #with requests.get('https://arthursdata.blob.core.windows.net/datavis/{}.zip'.format(srvc_name), stream=True) as uncomp:
         #with zipfile.ZipFile(io.BytesIO(uncomp.content)) as f:
-    with zipfile.ZipFile('DataVisDataFiles/{}'.format(srvc_name)):
+    with zipfile.ZipFile('DataVisDataFiles/{}'.format(srvc_name)) as f:
         titles_file = f.open('titles.csv')
         #credits_file = f.open('credits.csv')
         
