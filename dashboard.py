@@ -8,26 +8,28 @@ import requests
 import io
 
 def load_imdb_data(req):
-    url = 'https://arthursdata.blob.core.windows.net/datavis/title.{}.tsv.gz'.format(req)
+    url = 'DataVisDataFiles/{}'.format(req)
+    #url = 'https://arthursdata.blob.core.windows.net/datavis/title.{}.tsv.gz'.format(req)
     return pd.read_csv(url, sep='\t', index_col=0, compression='infer')
 
 def load_strmsrvc_data(srvc_name):
-    with requests.get('https://arthursdata.blob.core.windows.net/datavis/{}.zip'.format(srvc_name), stream=True) as uncomp:
-        with zipfile.ZipFile(io.BytesIO(uncomp.content)) as f:
-            titles_file = f.open('titles.csv')
-            #credits_file = f.open('credits.csv')
-            
-            title = pd.read_csv(titles_file, index_col=0)
-            #credit = pd.read_csv(credits_file, index_col=0)
-
-            titles_file.close()
-            #credits_file.close()
+    #with requests.get('https://arthursdata.blob.core.windows.net/datavis/{}.zip'.format(srvc_name), stream=True) as uncomp:
+        #with zipfile.ZipFile(io.BytesIO(uncomp.content)) as f:
+    with zipfile.ZipFile('DataVisDataFiles/{}'.format(srvc_name)):
+        titles_file = f.open('titles.csv')
+        #credits_file = f.open('credits.csv')
         
-        #return {'titles':title, 'credits':credit}
+        title = pd.read_csv(titles_file, index_col=0)
+        #credit = pd.read_csv(credits_file, index_col=0)
+
+        titles_file.close()
+        #credits_file.close()
+    
+    #return {'titles':title, 'credits':credit}
     return title
 
 title = {
-    'basics':   load_imdb_data('basics'),
+    'basics':   load_imdb_data('basics_min'),
     'episode':  load_imdb_data('episode'),
     'ratings':  load_imdb_data('ratings')
 }
