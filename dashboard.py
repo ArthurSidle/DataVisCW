@@ -28,8 +28,8 @@ def load_strmsrvc_data(srvc_name):
 
 title = {
     'basics':   load_imdb_data('basics_min'),
-    'episode':  load_imdb_data('episode'),
-    'ratings':  load_imdb_data('ratings')
+    #'episode':  load_imdb_data('episode'),
+    #'ratings':  load_imdb_data('ratings')
 }
 
 """title_basics.drop(title_basics[
@@ -40,7 +40,7 @@ title = {
     (title_basics.titleType == 'videoGame')
 ].index, inplace=True)"""
 
-strm = {
+"""strm = {
     'ntfl': load_strmsrvc_data('ntfl'),
     'amzn': load_strmsrvc_data('amzn'),
     'crnc': load_strmsrvc_data('crnc'),
@@ -50,7 +50,7 @@ strm = {
     'hulu': load_strmsrvc_data('hulu'),
     'prmt': load_strmsrvc_data('prmt'),
     'raku': load_strmsrvc_data('raku')
-}
+}"""
 
 ####################################################################################
 # Prepare data #
