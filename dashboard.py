@@ -8,7 +8,7 @@ import requests
 import io
 
 def load_imdb_data(req):
-    url = 'DataVisDataFiles/{}.tsv.gz'.format(req)
+    url = 'DataVisDataFiles/title.{}.tsv.gz'.format(req)
     #url = 'https://arthursdata.blob.core.windows.net/datavis/title.{}.tsv.gz'.format(req)
     return pd.read_csv(url, sep='\t', index_col=0, compression='infer')
 
