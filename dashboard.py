@@ -27,7 +27,7 @@ def load_strmsrvc_data(srvc_name):
     return title
 
 title = {
-    'basics':   load_imdb_data('basics_min'),
+    'basics':   load_imdb_data('basics'),
     'episode':  load_imdb_data('episode'),
     'ratings':  load_imdb_data('ratings')
 }
