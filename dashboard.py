@@ -26,23 +26,19 @@ def load_strmsrvc_data(srvc_name):
         #return {'titles':title, 'credits':credit}
     return title
 
+title = {
+    'basics':   load_imdb_data('basics_min'),
+    'episode':  load_imdb_data('episode'),
+    'ratings':  load_imdb_data('ratings')
+}
 
-
-title_basics = load_imdb_data('basics')
-
-title_basics.drop(title_basics[
+"""title_basics.drop(title_basics[
     (title_basics.titleType == 'short') |
     (title_basics.titleType == 'tvEpisode') |
     (title_basics.titleType == 'tvSpecial') |
     (title_basics.titleType == 'tvShort') |
     (title_basics.titleType == 'videoGame')
-].index, inplace=True)
-
-title = {
-    'basics':   title_basics,
-    'episode':  load_imdb_data('episode'),
-    'ratings':  load_imdb_data('ratings')
-}
+].index, inplace=True)"""
 
 strm = {
     'ntfl': load_strmsrvc_data('ntfl'),
@@ -60,12 +56,4 @@ strm = {
 # Prepare data #
 ####################################################################################
 
-
-import streamlit as st
-import pandas as pd
-df = pd.DataFrame({
-  'first column': [1, 2, 3, 4],
-  'second column': [10, 20, 30, 40]
-})
-
-df
+title['basics'].head()
