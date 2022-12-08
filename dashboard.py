@@ -32,15 +32,7 @@ title = {
     #'ratings':  load_imdb_data('ratings')
 }
 
-"""title_basics.drop(title_basics[
-    (title_basics.titleType == 'short') |
-    (title_basics.titleType == 'tvEpisode') |
-    (title_basics.titleType == 'tvSpecial') |
-    (title_basics.titleType == 'tvShort') |
-    (title_basics.titleType == 'videoGame')
-].index, inplace=True)"""
-
-"""strm = {
+strm = {
     'ntfl': load_strmsrvc_data('ntfl'),
     'amzn': load_strmsrvc_data('amzn'),
     'crnc': load_strmsrvc_data('crnc'),
@@ -50,10 +42,11 @@ title = {
     'hulu': load_strmsrvc_data('hulu'),
     'prmt': load_strmsrvc_data('prmt'),
     'raku': load_strmsrvc_data('raku')
-}"""
+}
 
 ####################################################################################
 # Prepare data #
 ####################################################################################
 
-title['basics'].head()
+st.write(title['basics'].head())
+st.write(strm['ntfl'].head())
