@@ -6,6 +6,8 @@ import concurrent
 import zlib
 import gc
 
+debug = False
+
 class DatasetLoader:
     def __init__(self, file, csv, index_col=False, file_type='zip', lines=-1, max_blocks=-1):
         self.file = file
@@ -16,7 +18,10 @@ class DatasetLoader:
         self.max_blocks = max_blocks
         self.eof = False
         self.encoding = 'utf_8'
-        self.prefix = 'data/'
+        if debug:
+            self.prefix = 'data/'
+        else:
+            self.prefix = 'final_data/'
         #self.lock = Lock()
 
     def set_file(self, file, csv):

@@ -6,14 +6,6 @@ from plotly import graph_objects as go
 from zipfile import ZipFile
 from get_data import *
 
-
-def get_df_from_zip(file, csv, index_col=False):
-    with ZipFile(f"data/{file}.zip") as archive:
-        file = archive.open(f"{csv}.csv")
-        df = pd.read_csv(file, index_col=index_col)
-        file.close()
-    return df
-
 steam_data = get_steam_data()
 delisters = get_delisters()
 

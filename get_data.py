@@ -8,7 +8,7 @@ def get_steam_data():
     def get_data():
         dl = DatasetLoader("steam", "steam")
         steam_df = dl.decompress_data()
-        steam_lost_df = pd.read_csv("data/steam_lost.csv", encoding="unicode_escape")
+        steam_lost_df = pd.read_csv("final_data/steam_lost.csv", encoding="unicode_escape")
 
         steam_lost_df.set_index('AppID', inplace=True)
 
