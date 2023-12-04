@@ -25,4 +25,8 @@ def get_steam_data():
     }
 
     return data_out
-    
+
+def get_delisters():
+    df_out = pd.read_csv("final_data/serial_delisters.csv")
+    df_out = df_out[0:10]
+    return df_out

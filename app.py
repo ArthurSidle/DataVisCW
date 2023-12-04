@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 from plotly import graph_objects as go
 from zipfile import ZipFile
-import get_data
+from get_data import *
 
 
 def get_df_from_zip(file, csv, index_col=False):
@@ -14,8 +14,11 @@ def get_df_from_zip(file, csv, index_col=False):
         file.close()
     return df
 
-steam_data = get_data.get_steam_data()
+steam_data = get_steam_data()
+delisters = get_delisters()
+
 missing_percent_fig = go.Figure(go.Funnel(x=steam_data["percent"]["x"], y=steam_data["percent"]["y"]))
+delisters_fig = px.bar(delisters, x="company_name", y="count")
 
 no_of_steam_games = steam_data["percent"]["x"][0]
 no_of_lost_steam_games = steam_data["percent"]["x"][1]
@@ -36,7 +39,12 @@ app.layout = html.Div([
         html.P(f"There are {no_of_steam_games} games on steam. However, {no_of_lost_steam_games} are lost. That comprises {lost_percent_steam}% of all games ever released on the platform."),
         dcc.Graph(figure=missing_percent_fig)
         ], className="container-fluid px-xxl-5"
-    )
+    ),
+    html.Div([
+        html.H2("Serial Delisters"),
+        html.P("Some companies have a habit of removing their games from digital storefronts."),
+        dcc.Graph(figure=delisters_fig)
+    ], className="container-fluid px-xxl-5")
 ], className="bg-light")
 
 if __name__ == "__main__":
