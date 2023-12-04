@@ -2,8 +2,10 @@ from dash import Dash, html, dash_table, dcc, callback, Output, Input
 import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
+from plotly import graph_objects as go
 from zipfile import ZipFile
 import get_data
+
 
 def get_df_from_zip(file, csv, index_col=False):
     with ZipFile(f"data/{file}.zip") as archive:
@@ -12,9 +14,12 @@ def get_df_from_zip(file, csv, index_col=False):
         file.close()
     return df
 
-#df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/gapminder2007.csv")
-df = get_df_from_zip("steam", "steam", index_col=0)
-df = df.sample(10000)
+steam_data = get_data.get_steam_data()
+missing_percent_fig = go.Figure(go.Funnel(x=steam_data["percent"]["x"], y=steam_data["percent"]["y"]))
+
+no_of_steam_games = steam_data["percent"]["x"][0]
+no_of_lost_steam_games = steam_data["percent"]["x"][1]
+lost_percent_steam = round((no_of_lost_steam_games / (no_of_steam_games + no_of_lost_steam_games)) * 100, 2)
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -27,13 +32,10 @@ app.layout = html.Div([
         )], className="container-lg mx-auto"
     ),
     html.Div([
-        html.Div([
-            html.Div(html.Div("Hello world", className="p-3 bg-primary"), className="col"),
-            html.Div(html.Div("Hello world", className="p-3 bg-primary"), className="col"),
-            html.Div(html.Div("Hello world", className="p-3 bg-primary"), className="col")
-        ], className='row p-3 gx-5 text-center bg-light')
-    ],
-        className="container-fluid px-xxl-5"
+        html.H2("The Full Scope"),
+        html.P(f"There are {no_of_steam_games} games on steam. However, {no_of_lost_steam_games} are lost. That comprises {lost_percent_steam}% of all games ever released on the platform."),
+        dcc.Graph(figure=missing_percent_fig)
+        ], className="container-fluid px-xxl-5"
     )
 ], className="bg-light")
 
