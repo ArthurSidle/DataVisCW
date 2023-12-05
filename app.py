@@ -59,15 +59,16 @@ app.layout = html.Div([
             "Some types of games are more likely to disappear than others."),
         dcc.Graph(figure=genres_fig),
         dcc.Graph(figure=genres_other_fig)
-    ], className="container-fluid px-xxl-5"),
-    html.Div([
+    ], className="container-fluid px-xxl-5")
+], className="bg-light")
+
+"""html.Div([
         html.H2("Does rating influence delisting?"),
         html.P(
             "Delisted games often have lower ratings than their contemporaries"),
         dcc.Graph(figure=ratings_lost),
         dcc.Graph(figure=ratings)
-    ], className="container-fluid px-xxl-5")
-], className="bg-light")
+    ], className="container-fluid px-xxl-5")"""
 
 if __name__ == "__main__":
     app.run(debug=True)
