@@ -28,5 +28,21 @@ def get_steam_data():
 
 def get_delisters():
     df_out = pd.read_csv("final_data/serial_delisters.csv")
-    df_out = df_out[0:10]
+    df_out = df_out[0:20]
+    return df_out
+
+def get_genres():
+    df_out = pd.read_csv("final_data/genres.csv")
+    return df_out
+
+def get_genres_other():
+    df_out = pd.read_csv("final_data/genres_other.csv")
+    return df_out
+
+def get_ratings():
+    df_out = pd.read_csv("final_data/ratings.csv")
+    return df_out
+
+def get_ratings_lost():
+    df_out = pd.read_csv("final_data/ratings_lost.csv")
     return df_out
