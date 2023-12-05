@@ -17,6 +17,7 @@ no_of_lost_steam_games = steam_data["percent"]["x"][1]
 lost_percent_steam = round((no_of_lost_steam_games / (no_of_steam_games + no_of_lost_steam_games)) * 100, 2)
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 app.layout = html.Div([
     html.Div([
@@ -40,4 +41,5 @@ app.layout = html.Div([
 ], className="bg-light")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    #app.run(debug=True)
+    server.run_server(debug=True)
