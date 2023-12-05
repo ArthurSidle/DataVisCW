@@ -1,5 +1,6 @@
 from dash import Dash, html, dash_table, dcc, callback, Output, Input
 import dash_bootstrap_components as dbc
+from flask import Flask
 import pandas as pd
 import plotly.express as px
 from plotly import graph_objects as go
@@ -16,7 +17,9 @@ no_of_steam_games = steam_data["percent"]["x"][0]
 no_of_lost_steam_games = steam_data["percent"]["x"][1]
 lost_percent_steam = round((no_of_lost_steam_games / (no_of_steam_games + no_of_lost_steam_games)) * 100, 2)
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+flask_server = Flask(__name__)
+app = Dash(__name__, server=flask_server, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 app.layout = html.Div([
     html.Div([
