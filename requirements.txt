@@ -18,6 +18,7 @@ decorator==5.1.1
 executing==2.0.1
 Flask==3.0.0
 fonttools==4.45.0
+gunicorn==21.2.0
 idna==3.4
 igdb-api-v4==0.3.2
 importlib-metadata==6.8.0
